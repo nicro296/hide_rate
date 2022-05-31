@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="../js/option.js" defer></script>
+        <link rel="stylesheet" href="../css/option.css">
+    </head>    
+    <body>
+        <div>
+            <!-- <input type="button" value="目標レート値を更新する▼"> -->
+            <div class="">
+                <table>
+                    <tbody>
+                        <tr><td>レート非表示機能</td><td id="td-bl-hide-rate"></td></tr>
+                        <tr><td>目標レート値</td><td id="td-target-rate"></td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    <label>目標レート値更新</label>
+                    <input type="text" id="target-rate" placeholder="半角数字(0～9999)">
+                    <input type="button" id="decision-target-rate" value="確定">
+                </p>
+                <p>
+                    <label>レート非表示[有効/無効]切替</label>
+                    <input type="button" id="switch-hide-rate" value="切替">
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
