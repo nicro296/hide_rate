@@ -6,7 +6,6 @@ let btn_shor = document.getElementById('switch-hide-opponent-rate');
 
 function set_table_bl_hide_rate(){
     let td_bl_hide_rate = document.getElementById('td-bl-hide-rate');
-
     chrome.storage.local.get(['bl_hide_rate'], function(result){
         if(result.bl_hide_rate != null){
             if(result.bl_hide_rate){
@@ -14,11 +13,8 @@ function set_table_bl_hide_rate(){
             }else{
                 td_bl_hide_rate.textContent='無効';
             }
-
         }else{
-            chrome.storage.local.set({'bl_hide_rate':false}, function(){
-                console.log('Value is set to ' + false);
-            });
+            chrome.storage.local.set({'bl_hide_rate':false}, function(){});
             td_bl_hide_rate.textContent='無効';
         }
     });
@@ -29,20 +25,19 @@ function set_table_bl_hide_opponent_rate(){
     chrome.storage.local.get(['bl_hide_opponent_rate'],function(result){
         if(result.bl_hide_opponent_rate != null){
             if(result.bl_hide_opponent_rate){
-                tb_bl_hide_opponent_rate.textContent='有効';
+                tb_bl_hide_opponent_rate.textContent='双方';
             }else{
-                tb_bl_hide_opponent_rate.textContent='無効';
+                tb_bl_hide_opponent_rate.textContent='自分のみ';
             }
         }else{
             chrome.storage.local.set({'':false}, function(){});
-            tb_bl_hide_opponent_rate.textContent = '無効';
+            tb_bl_hide_opponent_rate.textContent = '自分のみ';
         }
     });
 }
 
 function set_table_target_rate(){
     let td_target_rate = document.getElementById('td-target-rate');
-    
     chrome.storage.local.get(['target_rate'], function(result){
         if(result.target_rate != null){
             td_target_rate.textContent=result.target_rate;
@@ -94,14 +89,16 @@ btn_shr.addEventListener('click',()=>{
 
 btn_shor.addEventListener('click',()=>{
     chrome.storage.local.get(['bl_hide_opponent_rate'], function(result){
-        if(result.bl_hide_opponent_rate){
-            chrome.storage.local.set({'bl_hide_opponent_rate':false}, function(){
-                set_table_bl_hide_opponent_rate();
-            });
-        }else{
-            chrome.storage.local.set({'bl_hide_opponent_rate':true}, function(){
-                set_table_bl_hide_opponent_rate();
-            });
+        if(result.bl_hide_opponent_rate!=null){
+            if(result.bl_hide_opponent_rate){
+                chrome.storage.local.set({'bl_hide_opponent_rate':false}, function(){
+                    set_table_bl_hide_opponent_rate();
+                });
+            }else{
+                chrome.storage.local.set({'bl_hide_opponent_rate':true}, function(){
+                    set_table_bl_hide_opponent_rate();
+                });
+            }
         }
     });
 });
