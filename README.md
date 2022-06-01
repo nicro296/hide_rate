@@ -4,7 +4,7 @@
 <br><br>
 利用準備としてCode->download zipを押してzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
 <br>
-<a href="https://note.affi-sapo-sv.com/chrome-extent-test.php#title2" target="_blank" rel="noopener noreferrer"></a>
+<a href="https://note.affi-sapo-sv.com/chrome-extent-test.php#title2" target="_blank" rel="noopener noreferrer">https://note.affi-sapo-sv.com/chrome-extent-test.php#title2</a>
 <br>
 <h3>非表示の例</h3>
 <img width="320" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%9D%9E%E8%A1%A8%E7%A4%BA%E4%BE%8B1.png">
