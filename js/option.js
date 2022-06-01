@@ -2,6 +2,7 @@
 let input = document.getElementById('target-rate');
 let btn_dtr = document.getElementById('decision-target-rate');
 let btn_shr = document.getElementById('switch-hide-rate');
+let btn_shor = document.getElementById('switch-hide-opponent-rate');
 
 function set_table_bl_hide_rate(){
     let td_bl_hide_rate = document.getElementById('td-bl-hide-rate');
@@ -19,6 +20,22 @@ function set_table_bl_hide_rate(){
                 console.log('Value is set to ' + false);
             });
             td_bl_hide_rate.textContent='無効';
+        }
+    });
+}
+
+function set_table_bl_hide_opponent_rate(){
+    let tb_bl_hide_opponent_rate = document.getElementById('tb_bl_hide_opponent_rate');
+    chrome.storage.local.get(['bl_hide_opponent_rate'],function(result){
+        if(result.bl_hide_opponent_rate != null){
+            if(result.bl_hide_opponent_rate){
+                tb_bl_hide_opponent_rate.textContent='有効';
+            }else{
+                tb_bl_hide_opponent_rate.textContent='無効';
+            }
+        }else{
+            chrome.storage.local.set({'':false}, function(){});
+            tb_bl_hide_opponent_rate.textContent = '無効';
         }
     });
 }
@@ -47,6 +64,7 @@ function check_input(value){
 
 set_table_bl_hide_rate();
 set_table_target_rate();
+set_table_bl_hide_opponent_rate();
 
 btn_dtr.addEventListener('click',()=>{
     if(check_input(input.value)){
@@ -69,6 +87,20 @@ btn_shr.addEventListener('click',()=>{
         }else{
             chrome.storage.local.set({'bl_hide_rate':true}, function(){
                 set_table_bl_hide_rate();
+            });
+        }
+    });
+});
+
+btn_shor.addEventListener('click',()=>{
+    chrome.storage.local.get(['bl_hide_opponent_rate'], function(result){
+        if(result.bl_hide_opponent_rate){
+            chrome.storage.local.set({'bl_hide_opponent_rate':false}, function(){
+                set_table_bl_opponent_hide_rate();
+            });
+        }else{
+            chrome.storage.local.set({'bl_hide_opponent_rate':true}, function(){
+                set_table_bl_opponent_hide_rate();
             });
         }
     });
