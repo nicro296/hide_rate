@@ -10,4 +10,4 @@
     (入力判定的には0から9999まで入力可能)
     
 <br>
-<img width="600" alt="オプション画面の画像" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E7%94%BB%E9%9D%A2.png">
+<img width="900" alt="オプション画面の画像" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E7%94%BB%E9%9D%A2.png">
