@@ -25,7 +25,7 @@ function set_table_bl_hide_rate(){
 }
 
 function set_table_bl_hide_opponent_rate(){
-    let tb_bl_hide_opponent_rate = document.getElementById('tb_bl_hide_opponent_rate');
+    let tb_bl_hide_opponent_rate = document.getElementById('td-bl-hide-opponent-rate');
     chrome.storage.local.get(['bl_hide_opponent_rate'],function(result){
         if(result.bl_hide_opponent_rate != null){
             if(result.bl_hide_opponent_rate){
