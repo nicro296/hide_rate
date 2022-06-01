@@ -96,11 +96,11 @@ btn_shor.addEventListener('click',()=>{
     chrome.storage.local.get(['bl_hide_opponent_rate'], function(result){
         if(result.bl_hide_opponent_rate){
             chrome.storage.local.set({'bl_hide_opponent_rate':false}, function(){
-                set_table_bl_opponent_hide_rate();
+                set_table_bl_hide_opponent_rate();
             });
         }else{
             chrome.storage.local.set({'bl_hide_opponent_rate':true}, function(){
-                set_table_bl_opponent_hide_rate();
+                set_table_bl_hide_opponent_rate();
             });
         }
     });
