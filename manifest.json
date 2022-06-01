@@ -20,8 +20,5 @@
         "js":["js/content-log.js"]
     }],
     "permissions":["storage"],
-    "host_permissions":[
-        "https://g-ratings.info/*"
-    ],
     "options_page":"html/options.html"
 }
