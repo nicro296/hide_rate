@@ -1,10 +1,11 @@
 # hide_rate
 ウェブサイト[Ratings for シャドウバース](https://g-ratings.info/)でブラウザ上のプレイヤーのレート値を非表示にするためのgoogle chrome拡張ツールです。
 <br>
+目標レート値を設定することで到達するまで非表示にすることができます。非表示対象はマッチング画面、対戦履歴画面の各対戦結果、マイページ。
 <h3>非表示の例</h3>
 <img width="320" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%9D%9E%E8%A1%A8%E7%A4%BA%E4%BE%8B1.png">
 <img width="320" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%9D%9E%E8%A1%A8%E7%A4%BA%E4%BE%8B2.png">
-<br>
+
 <h3>設定</h3><br>
 表の右側が現在の設定。それぞれ入力枠とボタンで操作。<br>
 <h6>1.非表示機能[on/off]</h6>
