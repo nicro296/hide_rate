@@ -1,4 +1,4 @@
-# hide_rate
+# hide_rate(β版)
 Ver.1.0.0(最終更新 6/2)
 <br>
 ウェブサイト[Ratings for シャドウバース](https://g-ratings.info/)でブラウザ上のプレイヤーのレート値を非表示にするためのgoogle chrome拡張ツールです。
