@@ -28,3 +28,6 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 対戦相手の結果入力が済んでおらずレート値が更新される前にBO3チェックインページを開きそこから次の試合を行おうとした場合、目標レートに到達できている時の通知を受け取れません。対戦相手の結果入力を待ったのちにページを開いてください(または再読み込みしてください)。
 <img width="900" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B1.png">
 <img width="900" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B2.png">
+<br>
+<h3>連絡先</h3>
+[Twitter](https://twitter.com/nicro296)
