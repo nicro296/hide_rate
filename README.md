@@ -32,5 +32,5 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <h3>連絡先</h3>
 <a href="https://twitter.com/nicro296">Twitter(@nicro296)</a>
 
-<h3>把握している不具合(未対応部分)</h3>
+<h3>把握している不具合・未対応部分(把握した日付)</h3>
 マイページで登録デッキなどを編集するボタンを押して、また元の表示に戻った際レートの非表示が行われない。(2022/6/2)
