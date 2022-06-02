@@ -30,4 +30,4 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <img width="900" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B2.png">
 <br>
 <h3>連絡先</h3>
-[Twitter](https://twitter.com/nicro296)
+![Twitter](https://twitter.com/nicro296)
