@@ -30,7 +30,7 @@ function set_table_bl_hide_opponent_rate(){
                 tb_bl_hide_opponent_rate.textContent='自分のみ';
             }
         }else{
-            chrome.storage.local.set({'':false}, function(){});
+            chrome.storage.local.set({'bl_hide_opponent_rate':false}, function(){});
             tb_bl_hide_opponent_rate.textContent = '自分のみ';
         }
     });
