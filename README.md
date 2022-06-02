@@ -11,7 +11,7 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <h3>非表示の例</h3>
 <img width="320" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%9D%9E%E8%A1%A8%E7%A4%BA%E4%BE%8B1.png">
 <img width="320" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%9D%9E%E8%A1%A8%E7%A4%BA%E4%BE%8B2.png">
-
+※システムの都合上マッチングページや対戦履歴ページでは画面描写よりも後に非表示処理が行われるため画面を凝視するとレート値が一瞬見えてしまう可能性があります。
 <h3>設定</h3><br>
 表の右側が現在の設定。それぞれ入力枠とボタンで操作。<br>
 <h6>1.非表示機能[on/off]</h6>
