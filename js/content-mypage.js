@@ -1,10 +1,11 @@
 
 let div_app = document.getElementById('app');
-let first_check = false;
 
 let rate='';
+let div3 = div_app.children[1].children[0].children[0].children[0];
 
 function main(target_rate){
+    let first_check = false;
     const jsInitCheckTimer = setInterval(jsLoaded, 1000);
     let d5 = div_app.children[1].children[0].children[0].children[0];
     function jsLoaded() {
@@ -31,23 +32,34 @@ function main(target_rate){
     }
 }
 
-
-chrome.storage.local.get(['bl_hide_rate','target_rate'], function(result){
-    if(result.bl_hide_rate!= null){
-        if(result.bl_hide_rate){
-            div_app.children[1].children[0].children[0].children[0].style.display ='none';
-            if(result.target_rate!=null|| result.target_rate==0){
-                window.addEventListener("load", main(result.target_rate), false);
+function hide_rate(){
+    chrome.storage.local.get(['bl_hide_rate','target_rate'], function(result){
+        if(result.bl_hide_rate!= null){
+            if(result.bl_hide_rate){
+                div_app.children[1].children[0].children[0].children[0].style.display ='none';
+                if(result.target_rate!=null|| result.target_rate==0){
+                    window.addEventListener("load", main(result.target_rate), false);
+                }else{
+                    div_app.children[1].children[0].children[0].children[0].style.display ='';
+                    chrome.storage.local.set({"target_rate":0},function(){});
+                }           
             }else{
-                div_app.children[1].children[0].children[0].children[0].style.display ='';
-                chrome.storage.local.set({"target_rate":0},function(){});
-            }           
+            }
         }else{
+            chrome.storage.local.set({"bl_hide_rate":false},function(){});
         }
-    }else{
-        chrome.storage.local.set({"bl_hide_rate":false},function(){});
+    });
+}
+
+hide_rate();
+div_app.children[1].children[0].children[0].children[0].style.display ='';
+
+let mo = new MutationObserver(function(){
+    if(div3.children.length==13){
+        hide_rate();
+        div_app.children[1].children[0].children[0].children[0].style.display ='';
     }
 });
+let config ={childList: true};
 
-
-
+mo.observe(div3,config);
