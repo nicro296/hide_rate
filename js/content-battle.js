@@ -66,8 +66,8 @@ function check_rate(target_rate){
             if(iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].textContent.indexOf('レーティング')>-1){
                 rate = iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children[1].textContent.substring(0,4).trim();
                 if(rate >= target_rate){
-                    chrome.storage.local.set({'bl_hide_rate':false},function(){});
                     window.alert('目標レートに到達しました。レート値の非表示を解除します');
+                    chrome.storage.local.set({'bl_hide_rate':false},function(){});
                 }
             }
         }
