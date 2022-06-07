@@ -3,7 +3,7 @@
 ウェブサイト<a href="https://g-ratings.info/">Ratings for シャドウバース</a>でブラウザ上のプレイヤーのレート値を非表示にするためのgoogle chrome拡張ツールです。
 目標レート値を設定することで到達するまで非表示にすることができます。非表示対象はマッチング画面、対戦履歴画面の各対戦結果、マイページです。
 <br><br>
-<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.2">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
+<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.4">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
 <br>
 https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <br>
