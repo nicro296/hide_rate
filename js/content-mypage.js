@@ -47,7 +47,7 @@ function hide_rate(){
 
                     }else{
                         set_alert = true;
-                        window.addEventListener("readystatechange", main(result.target_rate), false);
+                        document.addEventListener("readystatechange", main(result.target_rate), false);
                     }
                 }else{
                     div_app.children[1].children[0].children[0].children[0].style.display ='';

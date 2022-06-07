@@ -24,15 +24,7 @@ function check_rate(target_rate){
     const jsInitCheckTimer = setInterval(jsLoaded, 500);//（iframe読み込み待ち用）
     function jsLoaded() {
         let iframe1 = document.getElementById("reading-rate");
-        if (iframe1 != null 
-            && iframe1.contentWindow.document.getElementById('app').children != null
-            && iframe1.contentWindow.document.getElementById('app').children[1].children != null
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children != null
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children != null 
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children != null 
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children.length >= 8 
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children != null
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children != null) {
+        if (iframe1 != null ) {
             clearInterval(jsInitCheckTimer);
             if(iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].textContent.indexOf('レーティング')>-1){
                 rate = iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children[1].textContent.substring(0,4).trim();
@@ -75,7 +67,7 @@ function main(){
                 }else{//対戦ページ以外の時
                     set_mypage();
                     if(result.target_rate != null){
-                        window.addEventListener("readystatechange", check_rate(result.target_rate), false);
+                        window.addEventListener("load", check_rate(result.target_rate), false);
                     }else{
                         chrome.storage.local.set({'target_rate':0},function(){});
                     }
