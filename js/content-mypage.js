@@ -3,6 +3,10 @@ let div_app = document.getElementById('app');
 
 let rate='';
 let div3 = div_app.children[1].children[0].children[0].children[0];
+/**
+ * @type {boolean} アラート重複回避用
+ */
+let set_alert = false;
 
 function main(target_rate){
     let first_check = false;
@@ -11,6 +15,7 @@ function main(target_rate){
     function jsLoaded() {
         if (d5.children[8].children[0].children.length != 0) {
             clearInterval(jsInitCheckTimer);
+            set_alert = false;
         }
         if(!first_check){
             //要素を取得する処理
@@ -38,7 +43,12 @@ function hide_rate(){
             if(result.bl_hide_rate){
                 div_app.children[1].children[0].children[0].children[0].style.display ='none';
                 if(result.target_rate!=null|| result.target_rate==0){
-                    window.addEventListener("load", main(result.target_rate), false);
+                    if(set_alert){
+
+                    }else{
+                        set_alert = true;
+                        window.addEventListener("load", main(result.target_rate), false);
+                    }
                 }else{
                     div_app.children[1].children[0].children[0].children[0].style.display ='';
                     chrome.storage.local.set({"target_rate":0},function(){});
