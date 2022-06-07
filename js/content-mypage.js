@@ -89,8 +89,8 @@ function main(){
             clearInterval(jsInitCheckTimer);
             let div3 = div_app.children[1].children[0].children[0].children[0];
 
-            hide_rate();
-            div3.style.display ='';
+            // hide_rate();
+            // div3.style.display ='';
             
             let mo = new MutationObserver(function(){
                 if(div3.children.length==13){
