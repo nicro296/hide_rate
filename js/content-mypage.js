@@ -6,6 +6,7 @@ let rate='';
  * @type {boolean} アラート重複回避用
  */
 let set_alert = false;
+let first_time = true;
 
 function check_load(){
     if(div_app.children != null
@@ -89,13 +90,17 @@ function main(){
             clearInterval(jsInitCheckTimer);
             let div3 = div_app.children[1].children[0].children[0].children[0];
 
-            // hide_rate();
-            // div3.style.display ='';
+            hide_rate();
+            div3.style.display ='';
             
             let mo = new MutationObserver(function(){
                 if(div3.children.length==13){
-                    hide_rate();
-                    div_app.children[1].children[0].children[0].children[0].style.display ='';
+                    if(first_time){
+                        first_time = false;
+                    }else{
+                        hide_rate();
+                        div_app.children[1].children[0].children[0].children[0].style.display ='';
+                    }
                 }
             });
             let config ={childList: true};
