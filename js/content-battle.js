@@ -24,7 +24,15 @@ function check_rate(target_rate){
     const jsInitCheckTimer = setInterval(jsLoaded, 500);//（iframe読み込み待ち用）
     function jsLoaded() {
         let iframe1 = document.getElementById("reading-rate");
-        if (iframe1 != null ) {
+        if (iframe1 != null 
+            && iframe1.contentWindow.document.getElementById('app').children != null
+            && iframe1.contentWindow.document.getElementById('app').children[1].children != null
+            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children != null
+            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children != null 
+            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children != null 
+            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children.length >= 8 
+            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children != null
+            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children != null) {
             clearInterval(jsInitCheckTimer);
             if(iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].textContent.indexOf('レーティング')>-1){
                 rate = iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children[1].textContent.substring(0,4).trim();
@@ -42,36 +50,49 @@ function main(){
     chrome.storage.local.get(['bl_hide_rate','bl_hide_opponent_rate','target_rate'],function(result){
         if(result.bl_hide_rate != null){
             if(result.bl_hide_rate){
-
-                let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
-                if(div5.children!= null && div5.children.length >1){//対戦ページチェック
-    
-                    if(result.bl_hide_opponent_rate != null){
-                        if(result.bl_hide_opponent_rate){
-                            div5.children[1].children[0].children[0].textContent = '**** pt';
-                            div5.children[1].children[1].children[0].textContent = '**** pt';
-                            div_app.style.display = '';
-                        }else{
-                            if(div5.children[0].children[0].children[0].textContent == 'あなた'){
-                                div5.children[1].children[0].children[0].textContent = '**** pt';
-                                div_app.style.display = '';
-                            }else if(div5.children[0].children[1].children[0].textContent == 'あなた'){
-                                div5.children[1].children[1].children[0].textContent = '**** pt';
-                                div_app.style.display = '';
+                const jsInitCheckTimer = setInterval(jsLoaded, 100);
+                function jsLoaded() {
+                    if(div_app.children!=null && div_app.children.length >= 1
+                        && div_app.children[1].children != null
+                        && div_app.children[1].children[0].children != null
+                        && div_app.children[1].children[0].children[0].children != null
+                        && div_app.children[1].children[0].children[0].children[0].children != null
+                        && div_app.children[1].children[0].children[0].children[0].children[0].children != null
+                        && div_app.children[1].children[0].children[0].children[0].children[0].children.length >= 1){
+                        clearInterval(jsInitCheckTimer);
+                        let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
+                        
+                        if(div5.children!= null && div5.children.length >1){//対戦ページチェック
+            
+                            if(result.bl_hide_opponent_rate != null){
+                                if(result.bl_hide_opponent_rate){
+                                    div5.children[1].children[0].children[0].textContent = '**** pt';
+                                    div5.children[1].children[1].children[0].textContent = '**** pt';
+                                    div_app.style.display = '';
+                                }else{
+                                    if(div5.children[0].children[0].children[0].textContent == 'あなた'){
+                                        div5.children[1].children[0].children[0].textContent = '**** pt';
+                                        div_app.style.display = '';
+                                    }else if(div5.children[0].children[1].children[0].textContent == 'あなた'){
+                                        div5.children[1].children[1].children[0].textContent = '**** pt';
+                                        div_app.style.display = '';
+                                    }
+                                }
+                            }else{
+                                chrome.storage.local.set({'bl_hide_opponent_rate':false},function(){});
+                            }
+            
+                        }else{//対戦ページ以外の時
+                            set_mypage();
+                            if(result.target_rate != null){
+                                document.addEventListener("readystatechange", check_rate(result.target_rate), false);
+                            }else{
+                                chrome.storage.local.set({'target_rate':0},function(){});
                             }
                         }
-                    }else{
-                        chrome.storage.local.set({'bl_hide_opponent_rate':false},function(){});
-                    }
-    
-                }else{//対戦ページ以外の時
-                    set_mypage();
-                    if(result.target_rate != null){
-                        window.addEventListener("load", check_rate(result.target_rate), false);
-                    }else{
-                        chrome.storage.local.set({'target_rate':0},function(){});
                     }
                 }
+                
             }else{
             }
         }else{
