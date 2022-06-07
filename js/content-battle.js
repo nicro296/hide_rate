@@ -21,7 +21,7 @@ function set_mypage(){
  */
 function check_rate(target_rate){
     let rate;
-    const jsInitCheckTimer = setInterval(jsLoaded, 1000);//（iframe読み込み待ち用）
+    const jsInitCheckTimer = setInterval(jsLoaded, 500);//（iframe読み込み待ち用）
     function jsLoaded() {
         let iframe1 = document.getElementById("reading-rate");
         if (iframe1 != null) {
@@ -67,7 +67,7 @@ function main(){
                 }else{//対戦ページ以外の時
                     set_mypage();
                     if(result.target_rate != null){
-                        window.addEventListener("load", check_rate(result.target_rate), false);
+                        window.addEventListener("readystatechange", check_rate(result.target_rate), false);
                     }else{
                         chrome.storage.local.set({'target_rate':0},function(){});
                     }

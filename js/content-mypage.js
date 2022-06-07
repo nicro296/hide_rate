@@ -10,7 +10,7 @@ let set_alert = false;
 
 function main(target_rate){
     let first_check = false;
-    const jsInitCheckTimer = setInterval(jsLoaded, 1000);
+    const jsInitCheckTimer = setInterval(jsLoaded, 500);
     let d5 = div_app.children[1].children[0].children[0].children[0];
     function jsLoaded() {
         if (d5.children[8].children[0].children.length != 0) {
@@ -47,7 +47,7 @@ function hide_rate(){
 
                     }else{
                         set_alert = true;
-                        window.addEventListener("load", main(result.target_rate), false);
+                        window.addEventListener("readystatechange", main(result.target_rate), false);
                     }
                 }else{
                     div_app.children[1].children[0].children[0].children[0].style.display ='';
