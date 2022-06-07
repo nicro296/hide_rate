@@ -1,6 +1,43 @@
 let div_app = document.getElementById('app');
 div_app.style.display = 'none';
 
+function check_load(){
+    if(div_app.children!=null 
+        && div_app.children.length >= 2
+        && div_app.children[1].children != null
+        && div_app.children[1].children[0].children != null
+        && div_app.children[1].children[0].children[0].children != null
+        && div_app.children[1].children[0].children[0].children[0].children != null
+        && div_app.children[1].children[0].children[0].children[0].children[0].children != null
+        && div_app.children[1].children[0].children[0].children[0].children[0].children.length >= 2){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function check_load_iframe(iframe1){
+    if (iframe1 != null 
+        && iframe1.contentWindow != null
+        && iframe1.contentWindow.document != null
+        && iframe1.contentWindow.document.getElementById('app') != null
+        && iframe1.contentWindow.document.getElementById('app').children != null
+        && iframe1.contentWindow.document.getElementById('app').children.length >= 2
+        && iframe1.contentWindow.document.getElementById('app').children[1].children != null
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children != null
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children != null 
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children != null 
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children.length >= 9 
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children != null
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children != null
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children.length >= 2) {
+        return true;
+    }else{
+        return false;
+    }
+    
+}
+
 /**
  * レート値を取得するためにマイページ( https://g-ratings.info/mypage )をiframeタグで挿入して読み込ませる。
  */
@@ -21,21 +58,10 @@ function set_mypage(){
  */
 function check_rate(target_rate){
     let rate;
-    const jsInitCheckTimer = setInterval(jsLoaded, 500);//（iframe読み込み待ち用）
+    let jsInitCheckTimer = setInterval(jsLoaded, 500);//（iframe読み込み待ち用）
     function jsLoaded() {
-        let iframe1 = document.getElementById("reading-rate");
-        if (iframe1 != null 
-            && iframe1.contentWindow != null
-            && iframe1.contentWindow.document != null
-            && iframe1.contentWindow.document.getElementById('app') != null
-            && iframe1.contentWindow.document.getElementById('app').children != null
-            && iframe1.contentWindow.document.getElementById('app').children[1].children != null
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children != null
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children != null 
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children != null 
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children.length >= 8 
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children != null
-            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children != null) {
+        const iframe1 = document.getElementById("reading-rate");
+        if (check_load_iframe(iframe1)) {
             clearInterval(jsInitCheckTimer);
             if(iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].textContent.indexOf('レーティング')>-1){
                 rate = iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children[1].textContent.substring(0,4).trim();
@@ -53,15 +79,9 @@ function main(){
     chrome.storage.local.get(['bl_hide_rate','bl_hide_opponent_rate','target_rate'],function(result){
         if(result.bl_hide_rate != null){
             if(result.bl_hide_rate){
-                const jsInitCheckTimer = setInterval(jsLoaded, 100);
+                let jsInitCheckTimer = setInterval(jsLoaded, 100);
                 function jsLoaded() {
-                    if(div_app.children!=null && div_app.children.length >= 1
-                        && div_app.children[1].children != null
-                        && div_app.children[1].children[0].children != null
-                        && div_app.children[1].children[0].children[0].children != null
-                        && div_app.children[1].children[0].children[0].children[0].children != null
-                        && div_app.children[1].children[0].children[0].children[0].children[0].children != null
-                        && div_app.children[1].children[0].children[0].children[0].children[0].children.length >= 1){
+                    if(check_load()){
                         clearInterval(jsInitCheckTimer);
                         let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
                         
