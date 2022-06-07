@@ -2,25 +2,47 @@
 let div_app = document.getElementById('app');
 
 let rate='';
-let div3 = div_app.children[1].children[0].children[0].children[0];
 /**
  * @type {boolean} アラート重複回避用
  */
 let set_alert = false;
 
-function main(target_rate){
-    let first_check = false;
-    const jsInitCheckTimer = setInterval(jsLoaded, 500);
-    let d5 = div_app.children[1].children[0].children[0].children[0];
+function check_load(){
+    if(div_app.children != null
+        && div_app.children.length >= 2
+        && div_app.children[1].children != null
+        && div_app.children[1].children[0].children != null
+        && div_app.children[1].children[0].children[0].children != null
+        && div_app.children[1].children[0].children[0].children[0].children != null){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function check_load_rate(div3){
+    if(div3.children.length >= 9
+        && div3.children[8].children != null
+        && div3.children[8].children[0].children != null
+        && div3.children[8].children[0].children.length >=2){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+function check_rate(target_rate){
+    let jsInitCheckTimer = setInterval(jsLoaded, 500);
+    let div3 = div_app.children[1].children[0].children[0].children[0];
     function jsLoaded() {
-        if (d5.children[8].children[0].children.length != 0) {
+        if (check_load_rate(div3)) {
             clearInterval(jsInitCheckTimer);
             set_alert = false;
-        }
-        if(!first_check){
+
             //要素を取得する処理
-            if(d5.children[8].children!=null && d5.children[8].children[0].textContent.indexOf('レーティング')>-1){
-                let word = d5.children[8].children[0].children[1].textContent;
+            if(div3.children[8].children[0].textContent.indexOf('レーティング')>-1){
+                let word = div3.children[8].children[0].children[1].textContent;
                 rate = word.substring(0,word.indexOf('[RD')).trim();
                 word = word.substring(word.indexOf('[RD'));
                 if(parseFloat(target_rate) <= parseFloat(rate)){
@@ -28,9 +50,8 @@ function main(target_rate){
                     window.alert('目標レートに到達しました。レート値の非表示を解除します');
                 }else{
                     word = '**** '+word;
-                    d5.children[8].children[0].children[1].textContent = word;
+                    div3.children[8].children[0].children[1].textContent = word;
                 }
-                first_check=true;
             }
             div_app.children[1].children[0].children[0].children[0].style.display ='';
         }
@@ -47,7 +68,7 @@ function hide_rate(){
 
                     }else{
                         set_alert = true;
-                        document.addEventListener("readystatechange", main(result.target_rate), false);
+                        document.addEventListener("readystatechange", check_rate(result.target_rate), false);
                     }
                 }else{
                     div_app.children[1].children[0].children[0].children[0].style.display ='';
@@ -61,15 +82,27 @@ function hide_rate(){
     });
 }
 
-hide_rate();
-div_app.children[1].children[0].children[0].children[0].style.display ='';
+function main(){
+    let jsInitCheckTimer = setInterval(jsLoaded, 500);
+    function jsLoaded(){
+        if(check_load()){
+            clearInterval(jsInitCheckTimer);
+            let div3 = div_app.children[1].children[0].children[0].children[0];
 
-let mo = new MutationObserver(function(){
-    if(div3.children.length==13){
-        hide_rate();
-        div_app.children[1].children[0].children[0].children[0].style.display ='';
+            hide_rate();
+            div3.style.display ='';
+            
+            let mo = new MutationObserver(function(){
+                if(div3.children.length==13){
+                    hide_rate();
+                    div_app.children[1].children[0].children[0].children[0].style.display ='';
+                }
+            });
+            let config ={childList: true};
+            
+            mo.observe(div3,config);
+        }
     }
-});
-let config ={childList: true};
+}
+main();
 
-mo.observe(div3,config);
