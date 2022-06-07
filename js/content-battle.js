@@ -25,6 +25,8 @@ function check_rate(target_rate){
     function jsLoaded() {
         let iframe1 = document.getElementById("reading-rate");
         if (iframe1 != null 
+            && iframe1.contentWindow != null
+            && iframe1.contentWindow.document != null
             && iframe1.contentWindow.document.getElementById('app') != null
             && iframe1.contentWindow.document.getElementById('app').children != null
             && iframe1.contentWindow.document.getElementById('app').children[1].children != null
