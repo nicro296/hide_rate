@@ -30,6 +30,7 @@ function check_rate(target_rate){
             && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children != null
             && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children != null 
             && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children != null 
+            && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children.length >= 8 
             && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children != null
             && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children != null) {
             clearInterval(jsInitCheckTimer);
