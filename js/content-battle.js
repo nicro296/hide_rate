@@ -24,7 +24,7 @@ function check_rate(target_rate){
     const jsInitCheckTimer = setInterval(jsLoaded, 500);//（iframe読み込み待ち用）
     function jsLoaded() {
         let iframe1 = document.getElementById("reading-rate");
-        if (iframe1 != null ) {
+        if (iframe1 != null && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children != null) {
             clearInterval(jsInitCheckTimer);
             if(iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].textContent.indexOf('レーティング')>-1){
                 rate = iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children[1].textContent.substring(0,4).trim();
