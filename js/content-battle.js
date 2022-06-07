@@ -108,7 +108,7 @@ function main(){
                         }else{//対戦ページ以外の時
                             set_mypage();
                             if(result.target_rate != null){
-                                document.addEventListener("readystatechange", check_rate(result.target_rate), false);
+                                document.addEventListener("load", check_rate(result.target_rate), false);
                             }else{
                                 chrome.storage.local.set({'target_rate':0},function(){});
                             }
