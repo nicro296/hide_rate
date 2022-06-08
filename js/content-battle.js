@@ -86,7 +86,7 @@ function display_alert(){
         div_input_container.removeChild(input_yes);
         div_input_container.removeChild(input_no);
         span_alert.append(document.createTextNode("目標レートに到達しました！レート値非表示を解除します。"));
-        chrome.storage.local.set({'bl_hide_rate':false},function(){});
+        chrome.storage.local.set({'bl_hide_rate_rotation':false},function(){});
     });
     input_no.addEventListener('click',()=>{
         span_alert.textContent = '';
@@ -119,9 +119,9 @@ function check_rate(target_rate){
 
 function main(){
     //非表示が有効かの確認と目標レート値をこえているかの処理
-    chrome.storage.local.get(['bl_hide_rate','bl_hide_opponent_rate','target_rate'],function(result){
-        if(result.bl_hide_rate != null){
-            if(result.bl_hide_rate){
+    chrome.storage.local.get(['bl_hide_rate_rotation','bl_hide_opponent_rate_rotation','target_rate_rotation'],function(result){
+        if(result.bl_hide_rate_rotation != null){
+            if(result.bl_hide_rate_rotation){
                 let jsInitCheckTimer = setInterval(jsLoaded, 100);
                 function jsLoaded() {
                     if(check_load()){
@@ -130,8 +130,8 @@ function main(){
                         
                         if(div5.children!= null && div5.children.length >1){//対戦ページチェック
             
-                            if(result.bl_hide_opponent_rate != null){
-                                if(result.bl_hide_opponent_rate){
+                            if(result.bl_hide_opponent_rate_rotation != null){
+                                if(result.bl_hide_opponent_rate_rotation){
                                     div5.children[1].children[0].children[0].textContent = '**** pt';
                                     div5.children[1].children[1].children[0].textContent = '**** pt';
                                     div_app.style.display = '';
@@ -145,15 +145,15 @@ function main(){
                                     }
                                 }
                             }else{
-                                chrome.storage.local.set({'bl_hide_opponent_rate':false},function(){});
+                                chrome.storage.local.set({'bl_hide_opponent_rate_rotation':false},function(){});
                             }
             
                         }else{//対戦ページ以外の時
                             set_mypage();
-                            if(result.target_rate != null){
-                                window.addEventListener("load", check_rate(result.target_rate), false);
+                            if(result.target_rate_rotation != null){
+                                window.addEventListener("load", check_rate(result.target_rate_rotation), false);
                             }else{
-                                chrome.storage.local.set({'target_rate':0},function(){});
+                                chrome.storage.local.set({'target_rate_rotation':0},function(){});
                             }
                         }
                     }
@@ -162,7 +162,7 @@ function main(){
             }else{
             }
         }else{
-            chrome.storage.local.set({'bl_hide_rate':false},function(){});
+            chrome.storage.local.set({'bl_hide_rate_rotation':false},function(){});
         }
     });
 }

@@ -46,7 +46,7 @@ function check_rate(target_rate){
                 rate = word.substring(0,word.indexOf('[RD')).trim();
                 word = word.substring(word.indexOf('[RD'));
                 if(parseFloat(target_rate) <= parseFloat(rate)){
-                    chrome.storage.local.set({'bl_hide_rate':false},function(){});
+                    chrome.storage.local.set({'bl_hide_rate_rotation':false},function(){});
                     window.alert('目標レートに到達しました。レート値の非表示を解除します');
                 }else{
                     word = '**** '+word;
@@ -59,25 +59,25 @@ function check_rate(target_rate){
 }
 
 function hide_rate(){
-    chrome.storage.local.get(['bl_hide_rate','target_rate'], function(result){
-        if(result.bl_hide_rate!= null){
-            if(result.bl_hide_rate){
+    chrome.storage.local.get(['bl_hide_rate_rotation','target_rate_rotation'], function(result){
+        if(result.bl_hide_rate_rotation!= null){
+            if(result.bl_hide_rate_rotation){
                 div_app.children[1].children[0].children[0].children[0].style.display ='none';
-                if(result.target_rate!=null|| result.target_rate==0){
+                if(result.target_rate_rotation!=null|| result.target_rate_rotation==0){
                     if(set_alert){
 
                     }else{
                         set_alert = true;
-                        document.addEventListener("readystatechange", check_rate(result.target_rate), false);
+                        document.addEventListener("readystatechange", check_rate(result.target_rate_rotation), false);
                     }
                 }else{
                     div_app.children[1].children[0].children[0].children[0].style.display ='';
-                    chrome.storage.local.set({"target_rate":0},function(){});
+                    chrome.storage.local.set({'target_rate_rotation':0},function(){});
                 }           
             }else{
             }
         }else{
-            chrome.storage.local.set({"bl_hide_rate":false},function(){});
+            chrome.storage.local.set({'bl_hide_rate_rotation':false},function(){});
         }
     });
 }

@@ -18,9 +18,9 @@ function check_load(){
 }
 
 function main(){
-    chrome.storage.local.get(['bl_hide_rate','bl_hide_opponent_rate'],function(result){
-        if(result.bl_hide_rate != null){
-            if(result.bl_hide_rate){
+    chrome.storage.local.get(['bl_hide_rate_rotation','bl_hide_opponent_rate_rotation'],function(result){
+        if(result.bl_hide_rate_rotation != null){
+            if(result.bl_hide_rate_rotation){
                 let jsInitCheckTimer = setInterval(jsLoaded, 100);
                 function jsLoaded() {
                     if(check_load()){
@@ -28,8 +28,8 @@ function main(){
                         let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
                         if(div5.children!=null && div5.children.length>1){     
     
-                            if(result.bl_hide_opponent_rate != null){
-                                if(result.bl_hide_opponent_rate){
+                            if(result.bl_hide_opponent_rate_rotation != null){
+                                if(result.bl_hide_opponent_rate_rotation){
                                     div5.children[1].children[0].children[0].textContent = '**** pt';
                                     div5.children[1].children[1].children[0].textContent = '**** pt';
                                     div_app.style.display = '';
@@ -43,7 +43,7 @@ function main(){
                                     }
                                 }
                             }else{
-                                chrome.storage.local.set({'bl_hide_opponent_rate':false},function(){});
+                                chrome.storage.local.set({'bl_hide_opponent_rate_rotation':false},function(){});
                             }
             
                         }
@@ -52,7 +52,7 @@ function main(){
             }else{
             }
         }else{
-            chrome.storage.local.set({'bl_hide_rate':false},function(){});
+            chrome.storage.local.set({'bl_hide_rate_rotation':false},function(){});
         }
     });
 }
