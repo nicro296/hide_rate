@@ -31,7 +31,7 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <img width="900" src="https://github.com/nicro296/hide_rate/blob/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B4.png">
 <h5>マイページ</h5>
 アラートが表示されレート値非表示が解除されます。
-<img width="900" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B2.png">
+<img width="900" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B1.png">
 <br>
 <h3>連絡先</h3>
 <a href="https://twitter.com/nicro296">Twitter(@nicro296)</a>
