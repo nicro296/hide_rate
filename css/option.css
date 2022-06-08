@@ -6,3 +6,57 @@ table,tr,td{
 td{
     width: 100px;
 }
+
+body{
+	background:#eee;
+}
+
+ul{
+	list-style:none;
+}
+
+a{
+	color:#333;
+	text-decoration: none;
+}
+
+.wrapper{
+	width:100%;
+	max-width: 960px;
+	margin:30px auto;
+    background:#fefefe;
+}
+
+.area h2{
+	font-size:1.3rem;
+	margin:0 0 20px 10px;
+    height: 30px;
+}
+
+.area {
+	background: #fff;
+	padding:50px 20px;
+}
+
+.tab{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tab li a{
+    height: 18px;
+	display: block;
+	background:#ddd;
+	margin:0 2px;
+	padding:10px 20px;
+    cursor:pointer;
+}
+
+
+.tab li.active a{
+	background:#fff;
+}
+
+.display-none{
+    display: none;
+}

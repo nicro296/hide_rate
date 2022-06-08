@@ -1,7 +1,7 @@
 {
-    "name":"β版 hide rate(Ratings for シャドウバース) ",
+    "name":"β版 hide rate(Ratings for シャドウバース/2Pick Ratings for シャドウバース) ",
     "description":"目標レート値到達まで自身のレート値を非表示にするための非公式のchrome拡張ツールです。",
-    "version":"1.0.5",
+    "version":"1.0.6",
     "manifest_version":3,
     "icons":{
         "16":"/images/get_started16.png",
@@ -18,6 +18,15 @@
     },{
         "matches":["https://g-ratings.info/log/*"],
         "js":["js/content-log.js"]
+    },{
+        "matches":["https://2pick.g-ratings.info/mypage"],
+        "js":["js/2Pick-content-mypage.js"]
+    },{
+        "matches":["https://2pick.g-ratings.info/battle"],
+        "js":["js/2Pick-content-battle.js"]
+    },{
+        "matches":["https://2pick.g-ratings.info/log/*"],
+        "js":["js/2Pick-content-log.js"]
     }],
     "permissions":["storage"],
     "options_page":"html/options.html"

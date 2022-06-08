@@ -7,28 +7,57 @@
     </head>    
     <body>
         <div>
-            <!-- <input type="button" value="目標レート値を更新する▼"> -->
-            <div class="">
-                <table>
-                    <tbody>
-                        <tr><td>レート非表示機能</td><td id="td-bl-hide-rate-rotation"></td></tr>
-                        <tr><td>非表示対象</td><td id="td-bl-hide-opponent-rate-rotation"></td></tr>
-                        <tr><td>目標レート値</td><td id="td-target-rate-rotation"></td></tr>
-                    </tbody>
-                </table>
-                <p>
-                    <label>レート非表示[有効/無効]切替</label>
-                    <input type="button" id="switch-hide-rate-rotation" value="切替">
-                </p>
-                <p>
-                    <label>非表示対象[自分のみ/双方]切替</label>
-                    <input type="button" id="switch-hide-opponent-rate-rotation" value="切替">
-                </p>
-                <p>
-                    <label>目標レート値更新</label>
-                    <input type="text" id="target-rate-rotation" placeholder="半角数字(0～9999)">
-                    <input type="button" id="decision-target-rate-rotation" value="確定">
-                </p>
+            <div class="wrapper">
+                <ul class="tab">
+                    <li id="tab-rotation" class="active"><a>ローテBO3</a></li>
+                    <li id="tab-2Pick" class=""><a >2Pick</a></li>
+                </ul>
+                <div id="option-rotation" class="area">
+                    <h2>ローテBO3</h2>
+                    <table>
+                        <tbody>
+                            <tr><td>レート非表示機能</td><td id="td-bl-hide-rate-rotation"></td></tr>
+                            <tr><td>非表示対象</td><td id="td-bl-hide-opponent-rate-rotation"></td></tr>
+                            <tr><td>目標レート値</td><td id="td-target-rate-rotation"></td></tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        <label>レート非表示[有効/無効]切替</label>
+                        <input type="button" id="switch-hide-rate-rotation" value="切替">
+                    </p>
+                    <p>
+                        <label>非表示対象[自分のみ/双方]切替</label>
+                        <input type="button" id="switch-hide-opponent-rate-rotation" value="切替">
+                    </p>
+                    <p>
+                        <label>目標レート値更新</label>
+                        <input type="text" id="target-rate-rotation" placeholder="半角数字(0～9999)">
+                        <input type="button" id="decision-target-rate-rotation" value="確定">
+                    </p>
+                </div>
+                <div id="option-2Pick" class="area display-none">
+                    <h2>2Pick</h2>
+                    <table>
+                        <tbody>
+                            <tr><td>レート非表示機能</td><td id="td-bl-hide-rate-2Pick"></td></tr>
+                            <tr><td>非表示対象</td><td id="td-bl-hide-opponent-rate-2Pick"></td></tr>
+                            <tr><td>目標レート値</td><td id="td-target-rate-2Pick"></td></tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        <label>レート非表示[有効/無効]切替</label>
+                        <input type="button" id="switch-hide-rate-2Pick" value="切替">
+                    </p>
+                    <p>
+                        <label>非表示対象[自分のみ/双方]切替</label>
+                        <input type="button" id="switch-hide-opponent-rate-2Pick" value="切替">
+                    </p>
+                    <p>
+                        <label>目標レート値更新</label>
+                        <input type="text" id="target-rate-2Pick" placeholder="半角数字(0～9999)">
+                        <input type="button" id="decision-target-rate-2Pick" value="確定">
+                    </p>
+                </div>
             </div>
         </div>
     </body>
