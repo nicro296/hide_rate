@@ -1,11 +1,11 @@
 
-let input = document.getElementById('target-rate');
-let btn_dtr = document.getElementById('decision-target-rate');
-let btn_shr = document.getElementById('switch-hide-rate');
-let btn_shor = document.getElementById('switch-hide-opponent-rate');
+let input = document.getElementById('target-rate-rotation');
+let btn_dtr = document.getElementById('decision-target-rate-rotation');
+let btn_shr = document.getElementById('switch-hide-rate-rotation');
+let btn_shor = document.getElementById('switch-hide-opponent-rate-rotation');
 
 function set_table_bl_hide_rate(){
-    let td_bl_hide_rate = document.getElementById('td-bl-hide-rate');
+    let td_bl_hide_rate = document.getElementById('td-bl-hide-rate-rotation');
     chrome.storage.local.get(['bl_hide_rate'], function(result){
         if(result.bl_hide_rate != null){
             if(result.bl_hide_rate){
@@ -21,7 +21,7 @@ function set_table_bl_hide_rate(){
 }
 
 function set_table_bl_hide_opponent_rate(){
-    let tb_bl_hide_opponent_rate = document.getElementById('td-bl-hide-opponent-rate');
+    let tb_bl_hide_opponent_rate = document.getElementById('td-bl-hide-opponent-rate-rotation');
     chrome.storage.local.get(['bl_hide_opponent_rate'],function(result){
         if(result.bl_hide_opponent_rate != null){
             if(result.bl_hide_opponent_rate){
@@ -37,7 +37,7 @@ function set_table_bl_hide_opponent_rate(){
 }
 
 function set_table_target_rate(){
-    let td_target_rate = document.getElementById('td-target-rate');
+    let td_target_rate = document.getElementById('td-target-rate-rotation');
     chrome.storage.local.get(['target_rate'], function(result){
         if(result.target_rate != null){
             td_target_rate.textContent=result.target_rate;
