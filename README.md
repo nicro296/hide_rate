@@ -17,7 +17,7 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <h6>2.レート値非表示対象[自分のみ/双方]</h6>
 <h6>3.目標レート値[半角数字4桁]</h6>
 <br>
-<img width="900" alt="オプション画面の画像" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E7%94%BB%E9%9D%A2.png">
+<img width="900" alt="オプション画面の画像" src="https://github.com/nicro296/hide_rate/blob/main/README-image/%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E7%94%BB%E9%9D%A2ver.2.png">
 設定画面はブラウザ右上パズルのピースマーク → 三点マーク → オプション から
 <img width="500" alt="オプションの開き方" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E9%96%8B%E3%81%8D%E6%96%B9.png">
 値が設定されてない時は初期値として非表示機能「off」、非表示対象「自分のみ」、目標レート値「0」がセットされます。
