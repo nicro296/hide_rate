@@ -3,7 +3,7 @@
 ウェブサイト<a href="https://g-ratings.info/">Ratings for シャドウバース</a>でブラウザ上のプレイヤーのレート値を非表示にするためのgoogle chrome拡張ツールです。
 目標レート値を設定することで到達するまで非表示にすることができます。非表示対象はマッチング画面、対戦履歴画面の各対戦結果、マイページです。
 <br><br>
-<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.4">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
+<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.5">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
 <br>
 https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <br>
@@ -25,7 +25,12 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <h3>目標レート達成通知</h3>
 レート値が目標レートに到達した後、BO3チェックインページまたはマイページを読み込む際に以下のように通知が表示されます。<br>
 対戦相手の結果入力が済んでおらずレート値が更新される前にBO3チェックインページを開きそこから次の試合を行おうとした場合、目標レートに到達できている時の通知を受け取れません。対戦相手の結果入力を待ったのちにページを開いてください(または再読み込みしてください)。
-<img width="900" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B1.png">
+<h5>チェックイン画面の場合</h5>
+アラートが表示(すぐに消える場合あり)された後、下の画像2枚目のように文章とボタンが表示されます。「はい」を選択するとレート値非表示が解除され、「いいえ」を押すまたはどちらも押さない場合レート値非表示(レート到達通知)が引き続き行われます。
+<img width="900" src="https://github.com/nicro296/hide_rate/blob/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B3.png">
+<img width="900" src="https://github.com/nicro296/hide_rate/blob/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B4.png">
+<h5>マイページ</h5>
+アラートが表示されレート値非表示が解除されます。
 <img width="900" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B2.png">
 <br>
 <h3>連絡先</h3>
