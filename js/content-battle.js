@@ -110,6 +110,7 @@ function check_rate(target_rate){
             if(iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].textContent.indexOf('レーティング')>-1){
                 rate = iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children[1].textContent.substring(0,4).trim();
                 if(rate >= target_rate){
+                    window.alert('目標レートに到達しました。');
                     display_alert();
                 }
             }
