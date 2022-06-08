@@ -93,7 +93,7 @@ function main(){
             div3.style.display ='';
             
             let mo = new MutationObserver(function(){
-                if(div3.children.length==13){
+                if(div3.children.length>=9){
                     hide_rate();
                     div_app.children[1].children[0].children[0].children[0].style.display ='';
                 }
