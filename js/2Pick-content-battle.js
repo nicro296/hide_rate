@@ -42,8 +42,8 @@ function set_mypage(){
     let iframe = document.createElement('iframe');
     iframe.id = 'reading-rate';
     iframe.src = 'https://2pick.g-ratings.info/mypage';
-    iframe.width = 500;
-    iframe.height = 500;
+    iframe.width = 0;
+    iframe.height = 0;
     div_insert.appendChild(iframe);
     document.body.appendChild(div_insert);
 }
