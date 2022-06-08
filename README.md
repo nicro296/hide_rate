@@ -44,4 +44,4 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 
 <h3>2Pick Ratings</h3>
 ローテBO3用(ver.1.0.5)のものをコピーして書き換えて2Pick用にしたものを追加しました。マッチング後周りの動作確認をまだ行っていない状況ですが以下からzipファイルをダウンロードできます。
-<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.6">2Pick用(ver.1.0.6)</a>
+<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.6.1">2Pick用(ver.1.0.6)</a>
