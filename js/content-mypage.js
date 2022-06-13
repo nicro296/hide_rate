@@ -53,7 +53,6 @@ function check_rate(target_rate){
                     div3.children[8].children[0].children[1].textContent = word;
                 }
             }
-            div_app.children[1].children[0].children[0].children[0].style.display ='';
         }
     }
 }
@@ -62,7 +61,6 @@ function hide_rate(){
     chrome.storage.local.get(['bl_hide_rate_rotation','target_rate_rotation'], function(result){
         if(result.bl_hide_rate_rotation!= null){
             if(result.bl_hide_rate_rotation){
-                div_app.children[1].children[0].children[0].children[0].style.display ='none';
                 if(result.target_rate_rotation!=null|| result.target_rate_rotation==0){
                     if(set_alert){
 
@@ -71,7 +69,6 @@ function hide_rate(){
                         document.addEventListener("readystatechange", check_rate(result.target_rate_rotation), false);
                     }
                 }else{
-                    div_app.children[1].children[0].children[0].children[0].style.display ='';
                     chrome.storage.local.set({'target_rate_rotation':0},function(){});
                 }           
             }else{
@@ -90,12 +87,10 @@ function main(){
             let div3 = div_app.children[1].children[0].children[0].children[0];
 
             hide_rate();
-            div3.style.display ='';
             
             let mo = new MutationObserver(function(){
                 if(div3.children.length>=9){
                     hide_rate();
-                    div_app.children[1].children[0].children[0].children[0].style.display ='';
                 }
             });
             let config ={childList: true};

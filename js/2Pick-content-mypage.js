@@ -48,7 +48,6 @@ function check_rate(target_rate){
                     div3.children[4].children[0].children[1].textContent = word;
                 }
             }
-            div3.style.display ='';
         }
     }
 }
@@ -58,7 +57,6 @@ function hide_rate(){
         if(result.bl_hide_rate_2Pick != null){
             if(result.bl_hide_rate_2Pick){
                 let div3 =div_app.children[1].children[0].children[0].children[0];
-                div3.style.display ='none';
                 if(result.target_rate_2Pick != null|| result.target_rate_2Pick ==0){
                     if(set_alert){
 
@@ -85,12 +83,10 @@ function main(){
             let div3 = div_app.children[1].children[0].children[0].children[0];
             
             hide_rate();
-            div3.style.display = '';
 
             // let mo = new MutationObserver(function(){
             //     if(div3.children.length>=7){
             //         hide_rate();
-            //         div3.style.display ='';
             //     }
             // });
             // let config ={childList: true};
