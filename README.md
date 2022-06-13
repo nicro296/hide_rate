@@ -1,9 +1,9 @@
 # hide_rate(β版)
 <br>
 ウェブサイト<a href="https://g-ratings.info/">Ratings for シャドウバース</a>でブラウザ上のプレイヤーのレート値を非表示にするためのgoogle chrome拡張ツールです。
-目標レート値を設定することで到達するまで非表示にすることができます。非表示対象はマッチング画面、対戦履歴画面の各対戦結果、マイページです。
+目標レート値を設定することで到達するまで非表示にすることができます。非表示対象はマッチング画面、対戦履歴画面の各対戦結果、マイページです。2Pick用の機能も実装しています。
 <br><br>
-<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.5">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。(2Pick Ratingsについては<a href="https://github.com/nicro296/hide_rate#2pick-ratings">こちら</a>)
+<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.7">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
 <br>
 https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <br>
@@ -42,6 +42,4 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 ・チェックインページのアラート表示がOKをクリックしてないにも関わらず消える(画面内の別途表示で到達通知の把握は可能)。(2022/6/8)
 
 
-<h3>2Pick Ratings</h3>
-ローテBO3用(ver.1.0.5)のものをコピーして書き換えて2Pick用にしたものを追加しました。マッチング後周りの動作確認をまだ行っていない状況ですが以下からzipファイルをダウンロードできます。
-<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.6.1">2Pick用(ver.1.0.6)</a>
+
