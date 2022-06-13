@@ -62,7 +62,11 @@ function hide_rate(){
 
                     }else{
                         set_alert = true;
-                        document.addEventListener("readystatechange",check_rate(result.target_rate_2Pick), false);
+                        if(document.readyState == 'complete'){
+                            check_rate(result.target_rate_2Pick);
+                        }else{
+                            document.addEventListener("readystatechange",check_rate(result.target_rate_2Pick), false);
+                        }
                     }
                 }
             }else{

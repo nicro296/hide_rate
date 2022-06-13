@@ -66,7 +66,12 @@ function hide_rate(){
 
                     }else{
                         set_alert = true;
-                        document.addEventListener("readystatechange", check_rate(result.target_rate_rotation), false);
+                        if(document.readyState == 'complete'){
+                            check_rate(result.target_rate_rotation);
+                        }else{
+                            document.addEventListener("readystatechange", check_rate(result.target_rate_rotation), false);
+                        }
+                        
                     }
                 }else{
                     chrome.storage.local.set({'target_rate_rotation':0},function(){});
