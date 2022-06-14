@@ -16,14 +16,11 @@
         "matches":["https://g-ratings.info/battle"],
         "js":["js/content-battle.js"]
     },{
-        "matches":["https://g-ratings.info/log/*"],
+        "matches":["https://g-ratings.info/log/*","https://2pick.g-ratings.info/log/*"],
         "js":["js/content-log.js"]
     },{
         "matches":["https://2pick.g-ratings.info/battle"],
         "js":["js/2Pick-content-battle.js"]
-    },{
-        "matches":["https://2pick.g-ratings.info/log/*"],
-        "js":["js/2Pick-content-log.js"]
     }],
     "permissions":["storage"],
     "options_page":"html/options.html"
