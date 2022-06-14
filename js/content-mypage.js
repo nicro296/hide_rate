@@ -57,8 +57,8 @@ function check_load_rate(div3){
 }
 
 function check_rate(target_rate){
-    let count = 0;
-    let jsInitCheckTimer = setInterval(jsLoaded, 500);
+    let count = 1;
+    let jsInitCheckTimer = setInterval(jsLoaded, 100*count);
     let div3 = div_app.children[1].children[0].children[0].children[0];
     function jsLoaded() {
         count++;
@@ -80,7 +80,7 @@ function check_rate(target_rate){
                 }
             }
         }
-        if(count>10){
+        if(count>20){
             console.log('errorlog[countover]');
             clearInterval(jsInitCheckTimer);
         }
