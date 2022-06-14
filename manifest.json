@@ -10,7 +10,7 @@
         "128":"/images/get_started128.png"
     },
     "content_scripts":[{
-        "matches":["https://g-ratings.info/mypage"],
+        "matches":["https://g-ratings.info/mypage","https://2pick.g-ratings.info/mypage"],
         "js":["js/content-mypage.js"]
     },{
         "matches":["https://g-ratings.info/battle"],
@@ -18,9 +18,6 @@
     },{
         "matches":["https://g-ratings.info/log/*"],
         "js":["js/content-log.js"]
-    },{
-        "matches":["https://2pick.g-ratings.info/mypage"],
-        "js":["js/2Pick-content-mypage.js"]
     },{
         "matches":["https://2pick.g-ratings.info/battle"],
         "js":["js/2Pick-content-battle.js"]
