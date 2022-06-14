@@ -17,10 +17,12 @@ let target_rate = target_rate_rotation;
 if(location.href == url_rotation){
     child4 = child4_rotation;
     bl_hide_rate = bl_hide_rate_rotation;
+    target_rate = target_rate_rotation;
     console.log('rotation');
 }else if(location.href == url_2Pick){
     child4 = child4_2Pick;
     bl_hide_rate = bl_hide_rate_2Pick;
+    target_rate = target_rate_2Pick;
     console.log('2Pick');
 }else{
     console.log('urlが識別できません。');
