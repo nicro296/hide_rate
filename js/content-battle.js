@@ -1,5 +1,36 @@
 let div_app = document.getElementById('app');
-div_app.style.display = 'none';
+const url_rotation = 'https://g-ratings.info/battle';
+const url_2Pick = 'https://2pick.g-ratings.info/battle';
+
+const rotation = {
+    url_mypage:'https://g-ratings.info/mypage',
+    child4:8,
+    bl_hide_rate:'bl_hide_rate_rotation',
+    bl_hide_opponent_rate:'bl_hide_opponent_rate_rotation',
+    target_rate:'target_rate_rotation'
+};
+
+const _2Pick = {
+    url_mypage:'https://2Pick.g-ratings.info/mypage',
+    child4:4,
+    bl_hide_rate:'bl_hide_rate_2Pick',
+    bl_hide_opponent_rate:'bl_hide_opponent_rate_2Pick',
+    target_rate:'target_rate_2Pick'
+};
+
+let format = rotation;
+
+if(location.href.indexOf(url_rotation) >-1){
+    format = rotation;
+    console.log('rotation');
+}else if(location.href.indexOf(url_2Pick) >-1){
+    format = _2Pick;
+    console.log('2Pick');
+}else{
+    console.log('urlが識別できません。');
+}
+
+
 
 function check_load(){
     if(div_app.children!=null 
@@ -27,10 +58,10 @@ function check_load_iframe(iframe1){
         && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children != null
         && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children != null 
         && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children != null 
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children.length >= 9 
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children != null
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children != null
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children.length >= 2) {
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children.length > format.child4
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[format.child4].children != null
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[format.child4].children[0].children != null
+        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[format.child4].children[0].children.length >= 2) {
         return true;
     }else{
         return false;
@@ -45,7 +76,7 @@ function set_mypage(){
     let div_insert = document.createElement('div');
     let iframe = document.createElement('iframe');
     iframe.id = 'reading-rate';
-    iframe.src = 'https://g-ratings.info/mypage';
+    iframe.src = format.url_mypage;
     iframe.width = 0;
     iframe.height = 0;
     div_insert.appendChild(iframe);
@@ -86,7 +117,8 @@ function display_alert(){
         div_input_container.removeChild(input_yes);
         div_input_container.removeChild(input_no);
         span_alert.append(document.createTextNode("目標レートに到達しました！レート値非表示を解除します。"));
-        chrome.storage.local.set({'bl_hide_rate_rotation':false},function(){});
+        const bl_hide_rate_temp = {[format.bl_hide_rate]:false};
+        chrome.storage.local.set(('bl_hide_rate_temp',bl_hide_rate_temp),function(){});
     });
     input_no.addEventListener('click',()=>{
         span_alert.textContent = '';
@@ -101,15 +133,22 @@ function display_alert(){
  * @param {int} target_rate 目標レート値 
  */
 function check_rate(target_rate){
+    let count = 0;
     let rate;
-    let jsInitCheckTimer = setInterval(jsLoaded, 500);//（iframe読み込み待ち用）
+    let jsInitCheckTimer = setInterval(jsLoaded, 200);//（iframe読み込み待ち用）
     function jsLoaded() {
+        count++;
+        if(count>50){
+            console.log('errorlog[countover]');
+            clearInterval(jsInitCheckTimer);
+        }
         const iframe1 = document.getElementById("reading-rate");
         if (check_load_iframe(iframe1)) {
             clearInterval(jsInitCheckTimer);
-            if(iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].textContent.indexOf('レーティング')>-1){
-                rate = iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[8].children[0].children[1].textContent.substring(0,4).trim();
-                if(rate >= target_rate){
+            if(iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[format.child4].children[0].textContent.indexOf('レーティング')>-1){
+                let word = iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[format.child4].children[0].children[1].textContent;
+                rate = word.substring(0,word.indexOf('[RD')).trim();
+                if(parseFloat(rate) >= parseFloat(target_rate)){
                     window.alert('目標レートに到達しました。');
                     display_alert();
                 }
@@ -120,41 +159,46 @@ function check_rate(target_rate){
 
 function main(){
     //非表示が有効かの確認と目標レート値をこえているかの処理
-    chrome.storage.local.get(['bl_hide_rate_rotation','bl_hide_opponent_rate_rotation','target_rate_rotation'],function(result){
-        if(result.bl_hide_rate_rotation != null){
-            if(result.bl_hide_rate_rotation){
-                let jsInitCheckTimer = setInterval(jsLoaded, 100);
+    let count = 0;
+    chrome.storage.local.get([format.bl_hide_rate,format.bl_hide_opponent_rate,format.target_rate],function(result){
+        if(result[format.bl_hide_rate] != null){
+            if(result[format.bl_hide_rate]){
+                let jsInitCheckTimer = setInterval(jsLoaded, 200);
                 function jsLoaded() {
+                    count++;
+                    if(count>50){
+                        console.log('errorlog[countover]');
+                        clearInterval(jsInitCheckTimer);
+                    }
                     if(check_load()){
                         clearInterval(jsInitCheckTimer);
                         let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
                         
                         if(div5.children!= null && div5.children.length >1){//対戦ページチェック
             
-                            if(result.bl_hide_opponent_rate_rotation != null){
-                                if(result.bl_hide_opponent_rate_rotation){
+                            if(result[format.bl_hide_opponent_rate] != null){
+                                if(result[format.bl_hide_opponent_rate]){
                                     div5.children[1].children[0].children[0].textContent = '**** pt';
                                     div5.children[1].children[1].children[0].textContent = '**** pt';
-                                    div_app.style.display = '';
                                 }else{
                                     if(div5.children[0].children[0].children[0].textContent == 'あなた'){
                                         div5.children[1].children[0].children[0].textContent = '**** pt';
-                                        div_app.style.display = '';
                                     }else if(div5.children[0].children[1].children[0].textContent == 'あなた'){
                                         div5.children[1].children[1].children[0].textContent = '**** pt';
-                                        div_app.style.display = '';
                                     }
                                 }
                             }else{
-                                chrome.storage.local.set({'bl_hide_opponent_rate_rotation':false},function(){});
+                                const bl_hide_opponent_rate_temp = {[format.bl_hide_opponent_rate]:false};
+                                chrome.storage.local.set(('bl_hide_opponent_rate_temp',bl_hide_opponent_rate_temp),function(){});
                             }
             
                         }else{//対戦ページ以外の時
                             set_mypage();
-                            if(result.target_rate_rotation != null){
-                                window.addEventListener("load", check_rate(result.target_rate_rotation), false);
+                            if(result[format.target_rate] != null){
+                                check_rate(result[format.target_rate]);
                             }else{
-                                chrome.storage.local.set({'target_rate_rotation':0},function(){});
+                                const target_rate_temp = {[format.target_rate]:0};
+                                chrome.storage.local.set(('target_rate_temp',target_rate_temp),function(){});
                             }
                         }
                     }
@@ -163,14 +207,10 @@ function main(){
             }else{
             }
         }else{
-            chrome.storage.local.set({'bl_hide_rate_rotation':false},function(){});
+            const bl_hide_rate_temp = {[format.bl_hide_rate]:false};
+            chrome.storage.local.set(('bl_hide_rate_temp',bl_hide_rate_temp),function(){});
         }
     });
 }
 
-function final(){
-    div_app.style.display = '';
-}
-
 main();
-final();
