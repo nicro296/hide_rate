@@ -18,6 +18,8 @@ if(location.href.indexOf(url_rotation) >-1){
     bl_hide_rate = bl_hide_rate_2Pick;
     bl_hide_opponent_rate = bl_hide_opponent_rate_2Pick;
     console.log('2Pick');
+}else{
+    console.log('urlが識別できません。');
 }
 
 
@@ -62,7 +64,8 @@ function main(){
                                     }
                                 }
                             }else{
-                                chrome.storage.local.set({bl_hide_opponent_rate:false},function(){});
+                                const bl_hide_opponent_rate_temp = {[bl_hide_opponent_rate]:false};
+                                chrome.storage.local.set(('bl_hide_opponent_rate_temp',bl_hide_opponent_rate_temp),function(){});
                             }
             
                         }
@@ -75,7 +78,8 @@ function main(){
             }else{
             }
         }else{
-            chrome.storage.local.set({bl_hide_rate:false},function(){});
+            const bl_hide_rate_temp = {[bl_hide_rate]:false};
+            chrome.storage.local.set(('bl_hide_rate_temp',bl_hide_rate_temp),function(){});
         }
     });
 }
