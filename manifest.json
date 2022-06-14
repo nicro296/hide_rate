@@ -1,6 +1,6 @@
 {
     "name":"β版 hide rate(Ratings for シャドウバース/2Pick Ratings for シャドウバース) ",
-    "description":"目標レート値到達まで自身のレート値を非表示にするための非公式のchrome拡張ツールです。",
+    "description":"目標レート値到達まで自身のレート値を非表示にするための非公式のchrome拡張ツールです。最新版についてはこちらから確認をお願いします https://github.com/nicro296/hide_rate",
     "version":"1.0.7",
     "manifest_version":3,
     "icons":{
