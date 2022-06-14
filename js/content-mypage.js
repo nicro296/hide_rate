@@ -111,11 +111,15 @@ function check_load_rate(div3){
 }
 
 function check_rate(target_rate){
-    let count = 1;
-    let jsInitCheckTimer = setInterval(jsLoaded, 100*count);
+    let count = 0;
+    let jsInitCheckTimer = setInterval(jsLoaded, 200);
     let div3 = div_app.children[1].children[0].children[0].children[0];
     function jsLoaded() {
         count++;
+        if(count>50){
+            console.log('errorlog[countover]');
+            clearInterval(jsInitCheckTimer);
+        }
         if (check_load_rate(div3)) {
             clearInterval(jsInitCheckTimer);
             set_alert = false;
@@ -134,10 +138,6 @@ function check_rate(target_rate){
                 }else{
                 }
             }
-        }
-        if(count>20){
-            console.log('errorlog[countover]');
-            clearInterval(jsInitCheckTimer);
         }
     }
 }
@@ -167,8 +167,14 @@ function hide_rate(){
 }
 
 function main(){
-    let jsInitCheckTimer = setInterval(jsLoaded, 500);
+    let count=0;
+    let jsInitCheckTimer = setInterval(jsLoaded, 200);
     function jsLoaded(){
+        count++;
+        if(count>50){
+            console.log('errorlog[countover]');
+            clearInterval(jsInitCheckTimer);
+        }
         if(check_load()){
             clearInterval(jsInitCheckTimer);
             let div3 = div_app.children[1].children[0].children[0].children[0];

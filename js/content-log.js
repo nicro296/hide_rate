@@ -1,5 +1,5 @@
-const url_rotation = 'https://g-ratings.info/log/';
-const url_2Pick = 'https://2pick.g-ratings.info/log/';
+const url_rotation = 'https://g-ratings.info/log';
+const url_2Pick = 'https://2pick.g-ratings.info/log';
 let div_app = document.getElementById('app');
 
 const bl_hide_rate_rotation = 'bl_hide_rate_rotation';
@@ -43,10 +43,14 @@ function main(){
     chrome.storage.local.get([bl_hide_rate,bl_hide_opponent_rate],function(result){
         if(result[bl_hide_rate] != null){
             if(result[bl_hide_rate]){
-                let count = 1;
-                let jsInitCheckTimer = setInterval(jsLoaded, 100*count);
+                let count = 0;
+                let jsInitCheckTimer = setInterval(jsLoaded, 200);
                 function jsLoaded() {
                     count++;
+                    if(count > 50){
+                        clearInterval(jsInitCheckTimer);
+                        console.log('errorlog[countover]');
+                    }
                     if(check_load()){
                         clearInterval(jsInitCheckTimer);
                         let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
@@ -69,10 +73,6 @@ function main(){
                             }
             
                         }
-                    }
-                    if(count > 20){
-                        clearInterval(jsInitCheckTimer);
-                        console.log('errorlog[countover]');
                     }
                 }
             }else{
