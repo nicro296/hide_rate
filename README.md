@@ -5,14 +5,14 @@
 <br>
 非表示対象はマッチング画面、対戦履歴画面の各対戦結果、マイページです。
 <br><br>
-<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.7">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
+<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.8">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
 <br>
 https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <br>
 <h3>非表示の例</h3>
 <img width="320" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%9D%9E%E8%A1%A8%E7%A4%BA%E4%BE%8B1.png">
 <img width="320" src="https://raw.githubusercontent.com/nicro296/hide_rate/main/README-image/%E9%9D%9E%E8%A1%A8%E7%A4%BA%E4%BE%8B2.png">
-<span style="color:red">※システムの都合上マッチングページや対戦履歴ページでは画面描写よりも後に非表示処理が行われるため画面を凝視するとレート値が一瞬見えてしまう可能性があります。</sapn>
+<span style="color:red;">※システムの都合上マッチングページや対戦履歴ページでは画面描写よりも後に非表示処理が行われるため画面を凝視するとレート値が一瞬見えてしまう可能性があります。</sapn>
 <h3>設定</h3><br>
 表の右側が現在の設定。それぞれ入力枠とボタンで操作。<br>
 <h6>1.非表示機能[on/off]</h6>
@@ -31,7 +31,7 @@ https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
     <li>アラート表示（OKを押す前に表示が消える場合がある不具合を確認済み）</li>
     <li>画像2枚目のように文章とボタンが表示されます。「はい」を選択するとレート値非表示が解除され、「いいえ」を押すまたはどちらも押さない場合レート値非表示(レート到達通知)が引き続き行われます。</li>
 </ul>
-<span style="color:red">
+<span style="color:red;">
 対戦相手の結果入力が済んでおらずレート値が更新される前にBO3チェックインページを開きそこから次の試合を行おうとした場合、目標レートに到達できている時の通知を受け取れません。対戦相手の結果入力を待ったのちにページを開いてください(または再読み込みしてください)。
 </span>
 <img width="900" src="https://github.com/nicro296/hide_rate/blob/main/README-image/%E9%80%9A%E7%9F%A5%E4%BE%8B3.png">
