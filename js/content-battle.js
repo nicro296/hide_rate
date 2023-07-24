@@ -47,27 +47,35 @@ function check_load(){
     if(divs6.length < 2) return false;
     return true;
 }
-
+/**
+ * iframe内で読み込んだマイページのロードチェック
+ * @param {*} iframe1 
+ * @returns bool
+ */
 function check_load_iframe(iframe1){
-    if (iframe1 != null 
-        && iframe1.contentWindow != null
-        && iframe1.contentWindow.document != null
-        && iframe1.contentWindow.document.getElementById('app') != null
-        && iframe1.contentWindow.document.getElementById('app').children != null
-        && iframe1.contentWindow.document.getElementById('app').children.length >= 2
-        && iframe1.contentWindow.document.getElementById('app').children[1].children != null
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children != null
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children != null 
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children != null 
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children.length > format.child4
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[format.child4].children != null
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[format.child4].children[0].children != null
-        && iframe1.contentWindow.document.getElementById('app').children[1].children[0].children[0].children[0].children[format.child4].children[0].children.length >= 2) {
-        return true;
-    }else{
-        return false;
-    }
-    
+    if(iframe1 == null) return false;
+    if(iframe1.contentWindow == null) return false;
+    let maypage_window = iframe1.contentWindow;
+    if (maypage_window.document == null) return false;
+    if (maypage_window.document.getElementById('app') == null) return false;
+    let div1 = maypage_window.document.getElementById('app');
+    if (div1.children == null) return false;
+    if (div1.children.length < 2) return false;
+    let div2 = div1.children[1];
+    if (div2.children == null) return false;
+    let div3 = div2.children[0];
+    if (div3.children == null) return false;
+    let div4 = div3.children[0];
+    if (div4.children == null) return false;
+    let div5 = div4.children[0];
+    if (div5.children == null) return false; 
+    if (div5.children.length <= format.child4) return false;
+    let div6 = div5.children[format.child4];
+    if (div6.children == null) return false;
+    let div7 = div6.children[0];
+    if(div7.children == null) return false;
+    if(div7.children.length < 2) return false;
+    return true;
 }
 
 /**
