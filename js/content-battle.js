@@ -30,21 +30,22 @@ if(location.href.indexOf(url_rotation) >-1){
     console.log('urlが識別できません。');
 }
 
-
-
 function check_load(){
-    if(div_app.children!=null 
-        && div_app.children.length >= 2
-        && div_app.children[1].children != null
-        && div_app.children[1].children[0].children != null
-        && div_app.children[1].children[0].children[0].children != null
-        && div_app.children[1].children[0].children[0].children[0].children != null
-        && div_app.children[1].children[0].children[0].children[0].children[0].children != null
-        && div_app.children[1].children[0].children[0].children[0].children[0].children.length >= 2){
-        return true;
-    }else{
-        return false;
-    }
+    if(div_app.children == null) return false;
+    let divs1 = div_app.children; 
+    if(divs1.length < 2) return false;
+    if(divs1[1].children == null) return false;
+    let divs2 = divs1[1].children;
+    if(divs2[0].children == null) return false;
+    let divs3 = divs2[0].children;
+    if(divs3[0].children == null) return false;
+    let divs4 = divs3[0].children;
+    if(divs4[0].children == null) return false;
+    let divs5 = divs4[0].children;
+    if(divs5[0].children == null) return false;
+    let divs6 = divs5[0].children;
+    if(divs6.length < 2) return false;
+    return true;
 }
 
 function check_load_iframe(iframe1){
