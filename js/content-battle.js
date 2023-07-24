@@ -217,7 +217,7 @@ function main(){
             set_mypage();
             if(result[format.target_rate] == null) {//目標レート初期値[0]セット
                 const target_rate_temp = {[format.target_rate]:0};
-                chrome.storage.local.set(('target_rate_temp',　target_rate_temp),function(){});
+                chrome.storage.local.set(('target_rate_temp', target_rate_temp),function(){});
                 return;
             }
             //目標レート達成チェック
