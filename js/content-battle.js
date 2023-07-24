@@ -49,7 +49,7 @@ function check_load(){
 }
 /**
  * iframe内で読み込んだマイページのロードチェック
- * @param {*} iframe1 
+ * @param {HTMLIFrameElement} iframe1 
  * @returns bool
  */
 function check_load_iframe(iframe1){
@@ -165,60 +165,66 @@ function check_rate(target_rate){
         }
     }
 }
-
+    /**
+     * 非表示が有効かの確認と目標レート値をこえているかの処理
+     */
 function main(){
-    //非表示が有効かの確認と目標レート値をこえているかの処理
-    let count = 0;
     chrome.storage.local.get([format.bl_hide_rate,format.bl_hide_opponent_rate,format.target_rate],function(result){
-        if(result[format.bl_hide_rate] != null){
-            if(result[format.bl_hide_rate]){
-                let jsInitCheckTimer = setInterval(jsLoaded, 200);
-                function jsLoaded() {
-                    count++;
-                    if(count>50){
-                        console.log('errorlog[countover]');
-                        clearInterval(jsInitCheckTimer);
-                    }
-                    if(check_load()){
-                        clearInterval(jsInitCheckTimer);
-                        let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
-                        
-                        if(div5.children!= null && div5.children.length >1){//対戦ページチェック
-            
-                            if(result[format.bl_hide_opponent_rate] != null){
-                                if(result[format.bl_hide_opponent_rate]){
-                                    div5.children[1].children[0].children[0].textContent = '**** pt';
-                                    div5.children[1].children[1].children[0].textContent = '**** pt';
-                                }else{
-                                    if(div5.children[0].children[0].children[0].textContent == 'あなた'){
-                                        div5.children[1].children[0].children[0].textContent = '**** pt';
-                                    }else if(div5.children[0].children[1].children[0].textContent == 'あなた'){
-                                        div5.children[1].children[1].children[0].textContent = '**** pt';
-                                    }
-                                }
-                            }else{
-                                const bl_hide_opponent_rate_temp = {[format.bl_hide_opponent_rate]:false};
-                                chrome.storage.local.set(('bl_hide_opponent_rate_temp',bl_hide_opponent_rate_temp),function(){});
-                            }
-            
-                        }else{//対戦ページ以外の時
-                            set_mypage();
-                            if(result[format.target_rate] != null){
-                                check_rate(result[format.target_rate]);
-                            }else{
-                                const target_rate_temp = {[format.target_rate]:0};
-                                chrome.storage.local.set(('target_rate_temp',target_rate_temp),function(){});
-                            }
-                        }
-                    }
-                }
-                
-            }else{
-            }
-        }else{
+        if(result[format.bl_hide_rate] == null) {//非表示初期値[通常表示(=非表示しない)]セット用
             const bl_hide_rate_temp = {[format.bl_hide_rate]:false};
-            chrome.storage.local.set(('bl_hide_rate_temp',bl_hide_rate_temp),function(){});
+            chrome.storage.local.set(('bl_hide_rate_temp', bl_hide_rate_temp), function(){});
+            return;
         }
+        //非表示処理 無しの時
+        if(!result[format.bl_hide_rate]) return;
+        //非表示の時
+        let count = 0, maxCount = 50;
+        let jsInitCheckTimer = setInterval(jsLoaded, 200);
+        function jsLoaded() {
+            count++;
+            //無限ループケア
+            if(count > maxCount){
+                console.log('errorlog[countover]');
+                clearInterval(jsInitCheckTimer);
+            }
+            //読み込みチェック
+            if(!check_load()) return;
+            clearInterval(jsInitCheckTimer);
+            let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
+            
+            if(div5.children != null && div5.children.length > 1) {//対戦ページチェック
+
+                if(result[format.bl_hide_opponent_rate] == null) {//非表示対象の初期値[通常表示]セット
+                    const bl_hide_opponent_rate_temp = {[format.bl_hide_opponent_rate]:false};
+                    chrome.storage.local.set(('bl_hide_opponent_rate_temp',bl_hide_opponent_rate_temp),function(){});
+                }
+
+                if(result[format.bl_hide_opponent_rate]) {//双方非表示
+                    div5.children[1].children[0].children[0].textContent = '**** pt';
+                    div5.children[1].children[1].children[0].textContent = '**** pt';
+                    return;
+                }
+
+                //自分のみ非表示
+                if(div5.children[0].children[0].children[0].textContent == 'あなた'){
+                    div5.children[1].children[0].children[0].textContent = '**** pt';
+                }else if(div5.children[0].children[1].children[0].textContent == 'あなた'){
+                    div5.children[1].children[1].children[0].textContent = '**** pt';
+                }
+                return;
+            }
+            //対戦ページ以外の時
+            set_mypage();
+            if(result[format.target_rate] == null) {//目標レート初期値[0]セット
+                const target_rate_temp = {[format.target_rate]:0};
+                chrome.storage.local.set(('target_rate_temp',　target_rate_temp),function(){});
+                return;
+            }
+            //目標レート達成チェック
+            check_rate(result[format.target_rate]);
+            return;
+        }
+        
     });
 }
 
