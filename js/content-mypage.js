@@ -2,7 +2,7 @@ let div_app = document.getElementById('app');
 const url_rotation = 'https://g-ratings.info/mypage';
 const url_2Pick = 'https://2pick.g-ratings.info/mypage';
 
-const child4_rotation = 8;
+const child4_rotation = 7;
 const bl_hide_rate_rotation = 'bl_hide_rate_rotation';
 const target_rate_rotation = 'target_rate_rotation';
 
