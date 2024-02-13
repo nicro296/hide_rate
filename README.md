@@ -5,7 +5,7 @@
 <br>
 非表示対象はマッチング画面、対戦履歴画面の各対戦結果、マイページです。
 <br><br>
-<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.8">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
+<a href="https://github.com/nicro296/hide_rate/releases/tag/ver.1.0.9">こちらの最新ver</a>のzipファイルをダウンロード、解凍し以下のサイトなどを参考に拡張機能を有効にしてください。
 <br>
 https://note.affi-sapo-sv.com/chrome-extent-test.php#title2
 <br>
