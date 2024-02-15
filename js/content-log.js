@@ -45,45 +45,41 @@ function check_load(){
 
 function main(){
     chrome.storage.local.get([bl_hide_rate,bl_hide_opponent_rate],function(result){
-        if(result[bl_hide_rate] != null){
-            if(result[bl_hide_rate]){
-                let count = 0;
-                let jsInitCheckTimer = setInterval(jsLoaded, 200);
-                function jsLoaded() {
-                    count++;
-                    if(count > 50){
-                        clearInterval(jsInitCheckTimer);
-                        console.log('errorlog[countover]');
-                    }
-                    if(check_load()){
-                        clearInterval(jsInitCheckTimer);
-                        let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
-                        if(div5.children!=null && div5.children.length>1){     
-    
-                            if(result[bl_hide_opponent_rate] != null){
-                                if(result[bl_hide_opponent_rate]){
-                                    div5.children[1].children[0].children[0].textContent = '**** pt';
-                                    div5.children[1].children[1].children[0].textContent = '**** pt';
-                                }else{
-                                    if(div5.children[0].children[0].children[0].textContent == 'あなた'){
-                                        div5.children[1].children[0].children[0].textContent = '**** pt';
-                                    }else if(div5.children[0].children[1].children[0].textContent == 'あなた'){
-                                        div5.children[1].children[1].children[0].textContent = '**** pt';
-                                    }
-                                }
-                            }else{
-                                const bl_hide_opponent_rate_temp = {[bl_hide_opponent_rate]:false};
-                                chrome.storage.local.set(('bl_hide_opponent_rate_temp',bl_hide_opponent_rate_temp),function(){});
-                            }
-            
-                        }
-                    }
-                }
-            }else{
-            }
-        }else{
+        if(result[bl_hide_rate] == null) {//非表示設定がnullの時、初期値false
             const bl_hide_rate_temp = {[bl_hide_rate]:false};
             chrome.storage.local.set(('bl_hide_rate_temp',bl_hide_rate_temp),function(){});
+            return;
+        }
+        if(!result[bl_hide_rate]) return;//非表示しない
+        let count = 0;//ループ処理の無限ケア用のカウント、
+        let max_loop = 50;//ループ上限
+        let jsInitCheckTimer = setInterval(jsLoaded, 200);
+        function jsLoaded() {
+            count++;
+            if(count > max_loop) {//ループ処理の強制離脱用
+                clearInterval(jsInitCheckTimer);
+                console.log('errorlog[countover]');
+            }
+            if(!check_load()) return;//ロードチェック
+            clearInterval(jsInitCheckTimer);
+            let div5 = div_app.children[1].children[0].children[0].children[0].children[0].children[1];
+            if(div5.children == null) return;
+            if(div5.children.length <= 1) return;
+            if(result[bl_hide_opponent_rate] == null) {//相手のレート非表示の有無がnullの時、初期値false
+                const bl_hide_opponent_rate_temp = {[bl_hide_opponent_rate]:false};
+                chrome.storage.local.set(('bl_hide_opponent_rate_temp',bl_hide_opponent_rate_temp),function(){});
+            }
+            if(result[bl_hide_opponent_rate]) {
+                div5.children[1].children[0].children[0].textContent = '**** pt';
+                div5.children[1].children[1].children[0].textContent = '**** pt';
+                return;
+            }else{
+                if(div5.children[0].children[0].children[0].textContent == 'あなた'){
+                    div5.children[1].children[0].children[0].textContent = '**** pt';
+                }else if(div5.children[0].children[1].children[0].textContent == 'あなた'){
+                    div5.children[1].children[1].children[0].textContent = '**** pt';
+                }
+            }
         }
     });
 }
