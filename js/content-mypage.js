@@ -100,14 +100,13 @@ function check_load(){
 }
 
 function check_load_rate(div3){
-    if(div3.children.length > child4
-        && div3.children[child4].children != null
-        && div3.children[child4].children[0].children != null
-        && div3.children[child4].children[0].children.length >=2){
-        return true;
-    }else{
-        return false;
-    }
+    if(div3.children.length <= child4) return false;
+    let div4 = div3.children[child4];
+    if(div4.children == null) return false;
+    let div5 = div4.children[0];
+    if(div5.children == null) return false;
+    if(div5.children.length < 2) return false;
+    return true;
 }
 
 function check_rate(target_rate){
