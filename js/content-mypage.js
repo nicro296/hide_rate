@@ -160,29 +160,29 @@ function hide_rate(){
 }
 
 function main(){
-    let count=0;
+    let count = 0;//ループ処理の無限ケア用のカウント
+    let max_loop = 50;//ループ上限
     let jsInitCheckTimer = setInterval(jsLoaded, 200);
     function jsLoaded(){
         count++;
-        if(count>50){
+        if(count > max_loop){//ループ処理の強制離脱用
             console.log('errorlog[countover]');
             clearInterval(jsInitCheckTimer);
         }
-        if(check_load()){
-            clearInterval(jsInitCheckTimer);
-            let div3 = div_app.children[1].children[0].children[0].children[0];
+        if(!check_load()) return;//ロードチェック
+        clearInterval(jsInitCheckTimer);
+        let div3 = div_app.children[1].children[0].children[0].children[0];
 
+        hide_rate();
+        
+        //ページ内の再読み込み時に再度、非表示処理を行う
+        let mo = new MutationObserver(function(){
+            if(div3.children.length < child4) return;
             hide_rate();
-            
-            let mo = new MutationObserver(function(){
-                if(div3.children.length>=child4){
-                    hide_rate();
-                }
-            });
-            let config ={childList: true};
-            
-            mo.observe(div3,config);
-        }
+        });
+        let config ={childList: true};
+
+        mo.observe(div3,config);
     }
 }
 main();
