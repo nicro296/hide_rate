@@ -110,34 +110,32 @@ function check_load_rate(div3){
 }
 
 function check_rate(target_rate){
-    let count = 0;
+    let count = 0;//ループ処理の無限ケア用のカウント、
+    let max_loop = 50;//ループ上限
     let jsInitCheckTimer = setInterval(jsLoaded, 200);
     let div3 = div_app.children[1].children[0].children[0].children[0];
     function jsLoaded() {
         count++;
-        if(count>50){
+        if(count > max_loop) {//ループ処理の強制離脱用
             console.log('errorlog[countover]');
             clearInterval(jsInitCheckTimer);
         }
-        if (check_load_rate(div3)) {
-            clearInterval(jsInitCheckTimer);
-            set_alert = false;
+        if(!check_load_rate(div3)) return;//ロードチェック
+        clearInterval(jsInitCheckTimer);
+        set_alert = false;
 
-            //要素を取得する処理
-            if(div3.children[child4].children[0].textContent.indexOf('レーティング')>-1){
-                let word = div3.children[child4].children[0].children[1].textContent;
-                rate = word.substring(0,word.indexOf('[RD')).trim();
-                word = word.substring(word.indexOf('[RD'));
-                word = '**** '+word;
-                div3.children[child4].children[0].children[1].textContent = word;
-                if(rate == '****'){
-                }else if(parseFloat(target_rate) <= parseFloat(rate)){
-                    window.alert('目標レートに到達しました。');
-                    display_alert();
-                }else{
-                }
-            }
-        }
+        let div5 = div3.children[child4].children[0];
+        if(div5.textContent.indexOf('レーティング') < 0) return;
+        let div6 = div5.children[1];
+        //要素を取得する処理
+        let word = div6.textContent;// 文字列 → XXXX [RD: XXX.X]
+        rate = word.substring(0,word.indexOf('[RD')).trim();
+        let rd_text = word.substring(word.indexOf('[RD'));
+        div6.textContent = '**** '+ rd_text;
+        if(rate == '****') return;
+        if(parseFloat(target_rate) > parseFloat(rate)) return;
+        window.alert('目標レートに到達しました。');
+        display_alert();
     }
 }
 
