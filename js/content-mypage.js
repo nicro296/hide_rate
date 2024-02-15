@@ -141,25 +141,21 @@ function check_rate(target_rate){
 
 function hide_rate(){
     chrome.storage.local.get([bl_hide_rate,target_rate], function(result){
-        if(result[bl_hide_rate]!= null){
-            if(result[bl_hide_rate]){
-                if(result[target_rate]!=null|| result[target_rate]==0){
-                    if(set_alert){
-
-                    }else{
-                        set_alert = true;
-                        check_rate(result[target_rate]);
-                    }
-                }else{
-                    const taret_rate_temp = {[target_rate]:0};
-                    chrome.storage.local.set(('taret_rate_temp',taret_rate_temp),function(){});
-                }
-            }else{
-            }
-        }else{
+        if(result[bl_hide_rate] == null) {//非表示設定がnullの時、初期値false
             const bl_hide_rate_temp = {[bl_hide_rate]:false};
             chrome.storage.local.set(('bl_hide_rate_temp',bl_hide_rate_temp),function(){});
+            return;
         }
+        if(!result[bl_hide_rate]) return;//隠さない設定の時、処理無し
+        if(result[target_rate] == null) {//目標レートがnullの時、初期値0
+            const taret_rate_temp = {[target_rate]:0};
+            chrome.storage.local.set(('taret_rate_temp',taret_rate_temp),function(){});
+            return;
+        }
+        if(set_alert) return;//既にレート値を隠す処理を実行済み
+        //レート値を隠す
+        set_alert = true;
+        check_rate(result[target_rate]);
     });
 }
 
