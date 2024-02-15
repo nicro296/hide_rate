@@ -22,21 +22,25 @@ if(location.href.indexOf(url_rotation) >-1){
     console.log('urlが識別できません。');
 }
 
-
-
+/**
+ * 読み込みチェック
+ * @returns {Boolean} 読み込みできているかどうか
+ */
 function check_load(){
-    if(div_app.children != null
-        && div_app.children.length >=2
-        && div_app.children[1].children != null
-        && div_app.children[1].children[0].children != null
-        && div_app.children[1].children[0].children[0].children != null
-        && div_app.children[1].children[0].children[0].children[0].children != null
-        && div_app.children[1].children[0].children[0].children[0].children[0].children != null
-        && div_app.children[1].children[0].children[0].children[0].children[0].children.length >= 2){
-        return true;
-    }else{
-        return false;
-    }
+    if(div_app.children == null) return false;
+    if(div_app.children.length < 2) return false;
+    let div0 = div_app.children[1];
+    if(div0.children == null) return false;
+    let div1 = div0.children[0];
+    if(div1.children == null) return false;
+    let div2 = div1.children[0];
+    if(div2.children == null) return false;
+    let div3 = div2.children[0];
+    if(div3.children == null) return false;
+    let div4 = div3.children[0];
+    if(div4.children == null) return false;
+    if(div4.children.length < 2) return false;
+    return true;
 }
 
 function main(){
